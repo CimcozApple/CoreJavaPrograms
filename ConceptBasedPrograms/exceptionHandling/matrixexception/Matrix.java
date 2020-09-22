@@ -1,9 +1,11 @@
+package com.psl.training.matrixexception;
+
 
 public class Matrix {
 
 	public static void main(String[] args) {
-		int a[][]={{1,1,1},{2,2,2},{3,3,3}};    
-		int b[][]={{1,1,1},{2,2,2},{3,3,3}};   
+		int a[][]={{9,8,2},{8,4,2},{1,2,4}};    
+		int b[][]={{1,2,3},{4,5,1},{9,1,2}};   
 		
 		matrixAddition(a,b);
 		matrixSubtraction(a,b);
@@ -12,7 +14,19 @@ public class Matrix {
 		
 	}
 
-	private static void matrixAddition(int[][] a,int[][] b) {
+	private static void matrixAddition(int[][] a,int[][] b) throws InvalidInputMatrix {
+		
+		
+			try {
+				if(a.length != b.length)
+				throw new Exception("Dimention should be same");
+			}
+		    catch (Exception e) {
+				InvalidInputMatrix newEx= new InvalidInputMatrix();
+				newEx.initCause(e.getCause()); // tell what is the reason of exception
+				throw newEx;
+			}
+		
 		
 		int c[][]=new int[3][3];  
 		System.out.println("Addition :");
@@ -43,10 +57,21 @@ public class Matrix {
 		
 	}
 
-	private static void matrixMultiplication(int[][] a,int[][] b) {
+	private static void matrixMultiplication(int[][] a,int[][] b) 
+	{
 		int c[][]=new int[3][3];  
 		System.out.println("Multiplication :");
-
+		
+		try {
+			if(a.length != b.length)
+			throw new Exception("Dimention should be same");
+		}
+	    catch (Exception e) {
+			InvalidInputMatrix newEx= new InvalidInputMatrix();
+			newEx.initCause(e.getCause()); // tell what is the reason of exception
+			throw newEx;
+		}
+	
 
 		for(int i=0;i<3;i++){    
 			for(int j=0;j<3;j++){    
@@ -63,6 +88,15 @@ public class Matrix {
 	}
 
 	private static void matrixSubtraction(int[][] a, int[][] b) {
+		try {
+			if(a.length != b.length)
+			throw new Exception("Dimention should be same");
+		}
+	    catch (Exception e) {
+			InvalidInputMatrix newEx= new InvalidInputMatrix();
+			newEx.initCause(e.getCause()); // tell what is the reason of exception
+			throw newEx;
+		}
 		int c[][]=new int[3][3];  
 		System.out.println("Subtraction:");
 
